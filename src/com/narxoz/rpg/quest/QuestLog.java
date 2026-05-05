@@ -36,6 +36,13 @@ public class QuestLog {
         return new PriorityQuestIterator(this, threshold);
     }
 
+    /**
+     * Traversal by descending reward (open/closed extension).
+     */
+    public QuestIterator byReward() {
+        return new RewardSortedQuestIterator(this);
+    }
+
     List<Quest> snapshot() {
         return Collections.unmodifiableList(new ArrayList<>(quests));
     }
