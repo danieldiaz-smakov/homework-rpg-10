@@ -24,13 +24,16 @@ public class PriorityQuestIterator implements QuestIterator {
 
     @Override
     public boolean hasNext() {
-        // TODO: return true while the cursor still points at a matching quest.
-        return false;
+        return cursor < snapshot.size();
     }
 
     @Override
     public Quest next() {
-        // TODO: return the current matching quest and advance the cursor.
-        return null;
+        if (!hasNext()) {
+            throw new IllegalStateException("No more quests");
+        }
+        Quest q = snapshot.get(cursor);
+        cursor++;
+        return q;
     }
 }

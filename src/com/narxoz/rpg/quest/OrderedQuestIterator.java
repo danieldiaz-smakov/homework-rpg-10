@@ -17,13 +17,16 @@ public class OrderedQuestIterator implements QuestIterator {
 
     @Override
     public boolean hasNext() {
-        // TODO: return true while the cursor still points at an unread quest.
-        return false;
+        return cursor < snapshot.size();
     }
 
     @Override
     public Quest next() {
-        // TODO: return the current quest and advance the cursor.
-        return null;
+        if (!hasNext()) {
+            throw new IllegalStateException("No more quests");
+        }
+        Quest q = snapshot.get(cursor);
+        cursor++;
+        return q;
     }
 }
